@@ -11,12 +11,12 @@ const displayCategories = (categories) => {
   const categoriesContainer = document.getElementById("categories-container");
   console.log(categories);
   categories.forEach((item) => {
-    console.log(item.category);
+    console.log(item.id);
     const div = document.createElement("div");
     //  div.classList.add('p-4')
     div.innerHTML = `
       
-      <button class="btn "><img class="h-10 w-10" src=${item.category_icon} />  ${item.category}</button>
+      <button id="btn-${item.category}" onclick="loadSpecificPets('${item.category}')" class="btn  btn-category"><img class="h-10 w-10" src=${item.category_icon} />  ${item.category}</button>
      `;
     categoriesContainer.appendChild(div);
   });
@@ -31,18 +31,9 @@ const loadAllPets = () => {
 };
 
 
- const demo = {
-  "petId": 4,
-  "breed": "Holland Lop",
-  "category": "Rabbit",
-  "date_of_birth": "2023-06-30",
-  "price": 200,
-  "image": "https://i.ibb.co.com/4g3Jrjf/pet-4.jpg",
-  "gender": "Female",
-  "pet_details": "This adorable female Holland Lop rabbit, born on June 30, 2023, is known for her calm and gentle nature. She thrives in quiet environments and enjoys being handled with care. Priced at $200, she is an ideal pet for those looking for a low-maintenance, friendly rabbit. Note that she is not vaccinated.",
-  "vaccinated_status": "Not",
-  "pet_name": "Nibbles"
-}
+
+
+
 
 //  const demo = {
 //   "petId": 4,
@@ -59,6 +50,22 @@ const loadAllPets = () => {
 // DISPLAY PETS
 const displayPets = (pets) => {
   const cardContainer=document.getElementById('card-container')
+  cardContainer.innerHTML= " "
+  if(pets.length == 0){
+    cardContainer.classList.remove('grid')
+    cardContainer.classList.add('col-span-3')
+    cardContainer.innerHTML=`
+    <div class="text-center flex flex-col justify-center items-center "> 
+      <div class="text-center"> <img class=" lg:w-80 w-30  " src="./assets/error.webp" /> </div>
+      <h2 class="text-xl font-bold">NO CONTENT HERE</h2>
+    </div>
+
+    `
+    return;
+  }
+  else{
+    cardContainer.classList.add('grid')
+  }
   console.log(pets);
   pets.forEach((item) => {
     console.log(item);
@@ -91,6 +98,20 @@ const displayPets = (pets) => {
     cardContainer.appendChild(card)
   });
 };
+
+// LOAD CATEGORY PETS 
+const loadSpecificPets=(name)=>{
+   
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${name}`)
+    .then((res) => res.json())
+    .then((data) => {
+      const activeBtn= document.getElementById(`btn-${name}`)
+      console.log(activeBtn)
+      activeBtn.classList.add('bg-green-200')
+      displayPets(data.data)
+    })
+    .catch((error) => console.log(error));
+}
 
 loadCategories();
 loadAllPets();
