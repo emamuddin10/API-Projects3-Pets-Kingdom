@@ -88,7 +88,7 @@ const displayPets = (pets) => {
 
         <div class="flex gap-3 "> 
           <button onclick="loadImagePets('${item.petId}')" class="btn btn-success"><i class="fa-solid fa-thumbs-up fa-lg" style="color: #bec8da;"></i>  </button>
-          <button class="btn btn-success text-white">Adopt </button>
+          <button onclick="openModal()" class="btn btn-success text-white">Adopt </button>
           <button onclick="loadDetailsPets('${item.petId}')" class="btn btn-success text-white">Details </button>
         </div>
       </div>
@@ -99,6 +99,32 @@ const displayPets = (pets) => {
   });
 };
 
+
+// Coundawn Modal
+const openModal=()=>{
+  const modal = document.getElementById('modal');
+  const countdownElement = document.getElementById('countdown');
+  let timeLeft = 3; // 3 seconds countdown
+
+  modal.classList.remove('hidden');
+
+  // Update countdown every second
+  const countdownInterval = setInterval(() => {
+    timeLeft--;
+    countdownElement.textContent = timeLeft;
+    
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval);
+      closeModal();
+    }
+  }, 1000);
+}
+// Function to close the modal
+function closeModal() {
+  const modal = document.getElementById('modal');
+  modal.classList.add('hidden');
+}
+
 // Load Image Data ///////////////////////////////////////////////////////////////////////////////////////
 const loadImagePets=(detailsId)=>{
   console.log(detailsId)
@@ -107,6 +133,8 @@ const loadImagePets=(detailsId)=>{
   .then(data =>showImageSidebar(data.petData))
   .catch(error =>console.log(error))
 }
+
+    
 // Show Images Sitebar /////////////////////////////////////////////////////////////////////////////////
 const showImageSidebar=(petsData)=>{
   console.log(petsData)
