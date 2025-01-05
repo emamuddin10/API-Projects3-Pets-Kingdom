@@ -18,7 +18,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <button class="active">mrew</button>
+    
     <header>
       <nav class="container mx-auto">
         <div class="navbar bg-base-100">
@@ -45,7 +45,7 @@
       </nav>
     </header>
     <main class="py-24">
-      <section class="text-center py-10 space-y-5">
+      <section id="view-more" class="text-center py-10 space-y-5">
         <p class="">Bringing Families Together</p>
         <h1 class="text-7xl font-bold">Your Path to Adoption <br> Starts Here</h1>
         <p class="w-[800px] mx-auto text-center">
@@ -53,18 +53,18 @@
           readable content of a page when looking at its layout. The point of
           using Lorem Ipsum is that it has a.
         </p>
-        <button class="btn bg-success text-white">View More</button>
+        <button onclick="viewMore()" class="btn bg-success text-white">View More</button>
         <div class="flex justify-center item-center"><img src="./assets/pet.webp" alt="" /></div>
       </section>
 
-      <section  class="space-y-5 py-10">
+      <section id="viewMore"  class="space-y-5 py-10">
         <h3 class="text-2xl font-bold text-center">Adopt  Your  Best Friend..</h3>
         <p class="w-[810px] mx-auto text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </section>
       <article class="flex justify-center w- gap-10" id="categories-container">
 
       </article>
-      <div class="flex justify-between container mx-auto">
+      <div class="flex justify-between container mx-auto py-10">
         <h2 class="font-bold text-xl">Best Deal For You.</h2>
         <button class="btn btn-success text-white">Sort By Price</button>
       </div>
@@ -75,9 +75,27 @@
          
           </section>
         </div>
-        <section id="selected-pets" class="border-2"></section>
+        <section id="selected-pets" class="border-2 grid grid-cols-2 gap-5 p-5">
+
+        </section>
       </div>
     </main>
+
+    <!-- Open the modal using ID.showModal() method -->
+<button  class="btn hidden" onclick="customModal.showModal()">open modal</button>
+<dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-content">
+
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
     <footer class="bg-black ">
         <section class="flex container mx-auto justify-between py-10">

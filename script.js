@@ -87,9 +87,9 @@ const displayPets = (pets) => {
         <p class="flex gap-2"><img src="./assets/Dolor.png"/>Price:${item.price}</p>
 
         <div class="flex gap-3 "> 
-          <button class="btn btn-success"><i class="fa-solid fa-thumbs-up fa-lg" style="color: #bec8da;"></i>  </button>
+          <button onclick="loadImagePets('${item.petId}')" class="btn btn-success"><i class="fa-solid fa-thumbs-up fa-lg" style="color: #bec8da;"></i>  </button>
           <button class="btn btn-success text-white">Adopt </button>
-          <button class="btn btn-success text-white">Details </button>
+          <button onclick="loadDetailsPets('${item.petId}')" class="btn btn-success text-white">Details </button>
         </div>
       </div>
       
@@ -99,6 +99,53 @@ const displayPets = (pets) => {
   });
 };
 
+// Load Image Data ///////////////////////////////////////////////////////////////////////////////////////
+const loadImagePets=(detailsId)=>{
+  console.log(detailsId)
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${detailsId}`)
+  .then(res => res.json())
+  .then(data =>showImageSidebar(data.petData))
+  .catch(error =>console.log(error))
+}
+// Show Images Sitebar /////////////////////////////////////////////////////////////////////////////////
+const showImageSidebar=(petsData)=>{
+  console.log(petsData)
+  const imagesContainer=document.getElementById('selected-pets')
+  imagesContainer.innerHTML +=`
+     <div><img class="w-40 h-30" src=${petsData.image}/> </div>
+  `
+
+}
+// Load Pets Details 
+const loadDetailsPets=(detailsId)=>{
+  console.log(detailsId)
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${detailsId}`)
+  .then(res => res.json())
+  .then(data =>displayPetsDetails(data.petData))
+  .catch(error =>console.log(error))
+}
+
+
+
+// Display Pets Details 
+const displayPetsDetails=(petsData)=>{
+  console.log(petsData.image)
+  const detailsContainer=document.getElementById('modal-content')
+  detailsContainer.innerHTML=`
+   <img class="w-full" src=${petsData.image}/>
+   <p class="text-center"> ${petsData.pet_details}</p>
+   
+  `
+  document.getElementById('customModal').showModal();
+}
+
+
+const removeActiveBtn=()=>{
+  const buttons=document.getElementsByClassName('btn-category')
+  for (let btn of buttons){
+    btn.classList.remove("bg-green-300")
+  }
+}
 // LOAD CATEGORY PETS 
 const loadSpecificPets=(name)=>{
    
@@ -106,8 +153,12 @@ const loadSpecificPets=(name)=>{
     .then((res) => res.json())
     .then((data) => {
       const activeBtn= document.getElementById(`btn-${name}`)
+
+      // sobai k remove koraw 
+      removeActiveBtn()
+      // id class k active koraw 
       console.log(activeBtn)
-      activeBtn.classList.add('bg-green-200')
+      activeBtn.classList.add('bg-green-300')
       displayPets(data.data)
     })
     .catch((error) => console.log(error));
