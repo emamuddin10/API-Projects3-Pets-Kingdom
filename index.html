@@ -20,7 +20,7 @@
   <body>
     
     <header>
-      <nav class="container mx-auto">
+      <nav class="container mx-auto ">
         <div class="navbar bg-base-100">
           <div class="navbar-start">
             <img src="./assets/logo.webp" alt="" />
@@ -44,7 +44,7 @@
         </div>
       </nav>
     </header>
-    <main class="py-24">
+    <main class="py-24 px-3 lg:px-0">
   <!-- modal  -->
    
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -58,35 +58,35 @@
    </div>
       <section id="view-more" class="text-center py-10 space-y-5">
         <p class="">Bringing Families Together</p>
-        <h1 class="text-7xl font-bold">Your Path to Adoption <br> Starts Here</h1>
-        <p class="w-[800px] mx-auto text-center">
+        <h1 class="lg:text-7xl text-3xl font-bold">Your Path to Adoption <br> Starts Here</h1>
+        <p class="lg:w-[800px] w-96 mx-auto text-center">
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
           using Lorem Ipsum is that it has a.
         </p>
-        <button onclick="viewMore()" class="btn bg-success text-white">View More</button>
+        <a href="#viewMore" class="scroll-smooth"><button  class="btn bg-success text-white">View More</button></a>
         <div class="flex justify-center item-center"><img src="./assets/pet.webp" alt="" /></div>
       </section>
 
       <section id="viewMore"  class="space-y-5 py-10">
         <h3 class="text-2xl font-bold text-center">Adopt  Your  Best Friend..</h3>
-        <p class="w-[810px] mx-auto text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+        <p class="lg:w-[800px] w-96 mx-auto text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </section>
-      <article class="flex justify-center w- gap-10" id="categories-container">
-
+      <article class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-10" id="categories-container">
+            
       </article>
       <div class="flex justify-between container mx-auto py-10">
         <h2 class="font-bold text-xl">Best Deal For You.</h2>
         <button class="btn btn-success text-white">Sort By Price</button>
       </div>
 <!-- JOTIL SECTION  -->
-      <div class="grid grid-cols-4 gap-3 container mx-auto">
-        <div class="col-span-3">
+      <div class="grid grid-cols-3 lg:grid-cols-4 gap-3 container mx-auto">
+        <div class="lg:col-span-3 col-span-2">
           <section id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5  container  mx-auto">
          
           </section>
         </div>
-        <section id="selected-pets" class="border-2 grid grid-cols-2 gap-5 p-5">
+        <section id="selected-pets" class="border-2 grid grid-cols-1 lg:grid-cols-2 content-start items-start gap-5 p-5">
 
         </section>
       </div>
@@ -109,9 +109,9 @@
 </dialog>
 
     <footer class="bg-black ">
-        <section class="flex container mx-auto justify-between py-10">
-            <div>
-                <div class="flex gap-5">
+        <section class="flex flex-col lg:flex-row text-center items-center space-y-5 container mx-auto lg:justify-between py-10">
+            <div> 
+                <div class="flex gap-5 justify-center">
                  <img src="./assets/logo.webp" alt=""> <h1 class="font-bold text-2xl text-white">Peddy</h1>
                 </div>
                 <div class="text-white">
@@ -139,7 +139,7 @@
              </div>
              <div class="flex flex-col gap-5">
                 <h1 class="text-white text-xl font-bold">Drop a Massage</h1>
-                <input class="bg-black px-7 py-5 rounded-xl" type="email" name="" id="" placeholder="Enter Your Email">
+                <input class="bg-black border-gray-400 border px-7 py-5 rounded-xl" type="email" name="" id="" placeholder="Enter Your Email">
                 <button class="bg-green-400 p-7 py-5 text-white rounded-xl">Subscribe</button>
              </div>
         </section>

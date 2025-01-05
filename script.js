@@ -13,10 +13,10 @@ const displayCategories = (categories) => {
   categories.forEach((item) => {
     console.log(item.id);
     const div = document.createElement("div");
-    //  div.classList.add('p-4')
+     div.classList.add('text-center')
     div.innerHTML = `
       
-      <button id="btn-${item.category}" onclick="loadSpecificPets('${item.category}')" class="btn  btn-category"><img class="h-10 w-10" src=${item.category_icon} />  ${item.category}</button>
+      <button id="btn-${item.category}" onclick="loadSpecificPets('${item.category}')" class="btn   btn-category"><img class="h-10 w-10" src=${item.category_icon} />  ${item.category}</button>
      `;
     categoriesContainer.appendChild(div);
   });
